@@ -1,6 +1,7 @@
 import pygame
 import screenf
 import levelsf
+import enemyf
 
 tile_size = 40 # <---------
 
@@ -25,7 +26,7 @@ class World():
         for row in build_tiles: ###
             col_count=0
             for tile in row:
-                if tile>0:
+                if 0 < tile < 20:
                     #screenf.screen.blit(self.images[tile-1], (self.tile_size*col_count, self.tile_size*row_count))
                     img=self.images[tile-1]
                     img_rect=img.get_rect()
@@ -35,6 +36,10 @@ class World():
                     self.tile_list.append(tile)
                 #elif tile == 16:
                 #    screenf.screen.blit(self.tile_float_right, (self.tile_size * col_count, self.tile_size * row_count))
+                elif tile == 20:
+                    blob = enemyf.Enemy(col_count*tile_size, row_count*tile_size)
+                    #from game import blob_group
+                    enemyf.blob_group.add(blob)
                 col_count += 1
             row_count += 1
 

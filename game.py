@@ -7,6 +7,7 @@ import screenf
 import playerf
 import tilef
 import levelsf
+import enemyf
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -14,6 +15,7 @@ clock = pygame.time.Clock()
 world=tilef.World()
 player = playerf.Player(tilef.tile_size, screenf.screenHeight-tilef.tile_size)
 world.update_tile(1)
+#blob_group = pygame.sprite.Group()
 
 run = True
 start_level=True
@@ -33,7 +35,7 @@ while run:
     #screenf.draw_grid()
 
     world.draw()
-
+    enemyf.blob_group.draw(screenf.screen)
     player.update()
 
     pygame.display.update()
