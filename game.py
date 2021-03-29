@@ -9,6 +9,7 @@ import tilef
 import levelsf
 import enemyf
 import worldf
+import buttonsf
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -17,6 +18,8 @@ tiles = tilef.Tiles()
 player = playerf.Player(tilef.tile_size, screenf.screenHeight-tilef.tile_size)
 tiles.update_tile(1)
 #blob_group = pygame.sprite.Group()
+
+restart_button = buttonsf.Buttons(screenf.screenWidth // 2-109, screenf.screenHeight // 2 -30, buttonsf.restart_img)
 
 win = False
 
@@ -45,5 +48,9 @@ while run:
     worldf.cactus_group.draw(screenf.screen)
     worldf.world.draw(screenf.screen)
     player.update()
+
+    if GameVariable.game_over == -1:
+        restart_button.draw()
+
 
     pygame.display.update()
