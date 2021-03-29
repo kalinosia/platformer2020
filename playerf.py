@@ -21,7 +21,7 @@ class Player():
             sizeXmg, sizeYimg = tile_size, tile_size
 
             img = pygame.image.load(f'img/boy/Dead__00{num}.png')
-            img = pygame.transform.scale(img, (sizeXmg, sizeYimg))
+            img = pygame.transform.scale(img, (sizeXmg+5, sizeYimg+5)) #because too small, problem with png... (sizeXmg+20, sizeYimg+20)) problem not on ground
             self.img_dead.append(img)
 
             img = pygame.image.load(f'img/boy/Idle__00{num}.png')
@@ -61,11 +61,6 @@ class Player():
             if GameVariable.game_over == 0:
 
                 key = pygame.key.get_pressed()
-                #if key[pygame.K_SPACE]:
-                    #self.state = "slide"
-                #    self.index = 0
-                # if key[pygame.K_SPACE] and self.jumped == False and self.jumping and colision:
-                #    you can jump
 
                 if key[pygame.K_UP] and not self.state == "jump" and self.on_ground:
                     self.vel_y = -14
@@ -125,7 +120,7 @@ class Player():
                 if self.state=="dead": dx+=1
 
 
-            if GameVariable.game_over == 0:
+            if GameVariable.game_over == 0: #if not game over
                 if self.state == "jump":
                     self.index_jump+=1
                     self.index=math.floor(self.index_jump/3)
